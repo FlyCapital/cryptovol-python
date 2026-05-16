@@ -1,0 +1,86 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cryptovol"
+version = "0.1.0"
+description = "Python SDK for the CryptoVol API — institutional-grade crypto implied volatility data."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "CryptoVol", email = "support@cryptovol.io" },
+]
+keywords = [
+    "cryptovol",
+    "crypto",
+    "volatility",
+    "options",
+    "implied-volatility",
+    "sabr",
+    "quant",
+    "trading",
+    "bitcoin",
+    "ethereum",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Office/Business :: Financial :: Investment",
+    "Typing :: Typed",
+]
+dependencies = [
+    "httpx>=0.24,<1.0",
+    "pydantic>=2.0,<3.0",
+]
+
+[project.optional-dependencies]
+pandas = ["pandas>=1.5"]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "pytest-httpx>=0.26",
+    "ruff>=0.4",
+    "mypy>=1.0",
+]
+docs = [
+    "mkdocs>=1.5",
+    "mkdocs-material>=9.0",
+    "mkdocstrings[python]>=0.24",
+]
+
+[project.urls]
+Homepage = "https://www.cryptovol.io"
+Documentation = "https://www.cryptovol.io/docs"
+Repository = "https://github.com/FlyCapital/cryptovol-python"
+Issues = "https://github.com/FlyCapital/cryptovol-python/issues"
+"Get an API key" = "https://www.cryptovol.io/api"
+
+[tool.hatch.build.targets.wheel]
+packages = ["cryptovol"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"cryptovol/py.typed" = "cryptovol/py.typed"
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "W"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-ra -q"

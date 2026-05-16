@@ -1,0 +1,74 @@
+site_name: cryptovol-python
+site_description: Python SDK for the CryptoVol crypto implied volatility API
+site_url: https://FlyCapital.github.io/cryptovol-python/
+repo_url: https://github.com/FlyCapital/cryptovol-python
+repo_name: FlyCapital/cryptovol-python
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - content.code.copy
+    - content.code.annotate
+    - search.suggest
+    - search.highlight
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: black
+      accent: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_source: false
+            show_root_heading: true
+            show_root_full_path: false
+            members_order: source
+            separate_signature: true
+            show_signature_annotations: true
+            docstring_style: numpy
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Quick start: quickstart.md
+  - Recipes: recipes.md
+  - Error handling: errors.md
+  - API reference: reference.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/FlyCapital/cryptovol-python
+    - icon: fontawesome/solid/globe
+      link: https://www.cryptovol.io

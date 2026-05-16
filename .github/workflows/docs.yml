@@ -1,0 +1,24 @@
+name: Deploy docs
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write   # mkdocs gh-deploy pushes to gh-pages branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install
+        run: pip install -e ".[docs]"
+      - name: Build & deploy
+        run: mkdocs gh-deploy --force
