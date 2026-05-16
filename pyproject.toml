@@ -77,10 +77,8 @@ line-length = 100
 target-version = "py39"
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "B", "UP", "W"]
-# UP006/UP007/UP045 want PEP-604 `X | None` and lowercase generics — those require Python 3.10+.
-# We support Python 3.9, so keep typing.Optional / typing.List.
-ignore = ["E501", "UP006", "UP007", "UP045"]
+select = ["E", "F", "B", "W"]
+ignore = ["E501"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
