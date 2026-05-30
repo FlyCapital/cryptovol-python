@@ -212,7 +212,7 @@ All six methods are available on every plan. Tiers differ in the breadth of the 
 | Sessions | US | US | Asia, London, US |
 | History window | 30 days | 1 year | Full archive |
 | Greeks / analytics | — | ✓ | ✓ |
-| Quota | 500/month | 70k/day | 100k/day |
+| Quota | 500/month | 100k/day | 100k/day |
 
 The history window applies to `vol_history`, `spot_history`, `realized_vol`, and any date range passed to `vol_index`. Hitting a limit raises `PlanLimitError` — the message tells you which tier unlocks it. Full details at **[cryptovol.io/api](https://www.cryptovol.io/api)**.
 
