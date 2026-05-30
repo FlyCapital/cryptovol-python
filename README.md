@@ -26,14 +26,14 @@ pip install "cryptovol[pandas]"
 
 ## Get an API key
 
-Sign up at **[cryptovol.io/api](https://www.cryptovol.io/api)** — BASIC, PRO, and ULTRA tiers are available.
+Sign up at **[cryptovol.io/signup](https://www.cryptovol.io/signup)** — free BASIC tier, no card required. Your key (`cvk_live_...`) appears on [cryptovol.io/account](https://www.cryptovol.io/account). PRO and ULTRA tiers unlock higher quotas and more assets.
 
 ## Quick start
 
 ```python
 from cryptovol import CryptoVol
 
-cv = CryptoVol(api_key="YOUR_RAPIDAPI_KEY")
+cv = CryptoVol(api_key="cvk_live_...")
 
 # Daily BTC 30-day implied vol index
 idx = cv.vol_index(ccy="BTC", tenor="30D")
@@ -62,6 +62,8 @@ That's it. The client is typed end-to-end, so your IDE autocompletes every field
 | `cv.vol_surface(...)` | `GET /v1/vol-surface` | One SABR-interpolated vol point |
 | `cv.vol_surface_bulk(...)` | `POST /v1/vol-surface/bulk` | Many points in one round-trip — efficient |
 | `cv.vol_history(...)` | `GET /v1/vol-history` | Constant-maturity historical IV for backtests |
+| `cv.spot_history(...)` | `GET /v1/spot-history` | Daily spot price time series per session |
+| `cv.realized_vol(...)` | `GET /v1/realized-vol` | Rolling annualized RV (√365) from spot log-returns |
 
 ### Strike conventions
 
@@ -202,16 +204,17 @@ data = cv.vol_index(ccy="BTC", tenor="30D", raw=True)
 
 ## Plan tiers (at a glance)
 
+All six methods are available on every plan. Tiers differ in the breadth of the data window (assets, sessions, history depth) and Greeks access.
+
 | | BASIC | PRO | ULTRA |
 |---|---|---|---|
 | Assets | BTC | + ETH, SOL | + XRP, AVAX, TRX |
 | Sessions | US | US | Asia, London, US |
 | History window | 30 days | 1 year | Full archive |
-| `vol_history` endpoint | — | ✓ | ✓ |
 | Greeks / analytics | — | ✓ | ✓ |
 | Quota | 500/month | 70k/day | 100k/day |
 
-Hitting a limit raises `PlanLimitError` — the message tells you which tier unlocks it. Full details at **[cryptovol.io/api](https://www.cryptovol.io/api)**.
+The history window applies to `vol_history`, `spot_history`, `realized_vol`, and any date range passed to `vol_index`. Hitting a limit raises `PlanLimitError` — the message tells you which tier unlocks it. Full details at **[cryptovol.io/api](https://www.cryptovol.io/api)**.
 
 ---
 
@@ -231,7 +234,7 @@ pytest
 - **API docs:** https://www.cryptovol.io/docs
 - **Methodology:** https://www.cryptovol.io/methodology
 - **Research / blog:** https://www.cryptovol.io/blog
-- **Get an API key:** https://www.cryptovol.io/api
+- **Get an API key:** https://www.cryptovol.io/signup
 
 ## License
 

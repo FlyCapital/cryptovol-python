@@ -18,6 +18,10 @@ Auto-generated from docstrings. Every public class and method is here.
 ::: cryptovol.BulkResultItem
 ::: cryptovol.VolHistoryResponse
 ::: cryptovol.VolHistoryPoint
+::: cryptovol.SpotHistoryResponse
+::: cryptovol.SpotHistoryPoint
+::: cryptovol.RealizedVolResponse
+::: cryptovol.RealizedVolPoint
 ::: cryptovol.Analytics
 ::: cryptovol.Greeks
 

@@ -38,16 +38,17 @@ from .exceptions import (
 )
 from .models import (
     BulkVolResponse,
+    RealizedVolResponse,
+    SpotHistoryResponse,
     VolHistoryResponse,
     VolIndexResponse,
     VolSurfacePoint,
 )
 
-DEFAULT_BASE_URL = "https://cryptovol.p.rapidapi.com"
-DEFAULT_HOST = "cryptovol.p.rapidapi.com"
+DEFAULT_BASE_URL = "https://cryptovol-api-nbakzshi6q-uc.a.run.app"
 DEFAULT_TIMEOUT = 30.0
 DEFAULT_MAX_RETRIES = 3
-DEFAULT_USER_AGENT = "cryptovol-python/0.1.0"
+DEFAULT_USER_AGENT = "cryptovol-python/0.3.0"
 
 StrikeType = Literal["strike", "moneyness", "delta"]
 OptionType = Literal["C", "P"]
@@ -64,13 +65,11 @@ class CryptoVol:
     Parameters
     ----------
     api_key:
-        Your RapidAPI key. Get one at https://www.cryptovol.io/api.
-        Sent as ``X-RapidAPI-Key`` on every request.
+        Your CryptoVol API key (the ``cvk_live_...`` value shown on
+        https://www.cryptovol.io/account). Sent as the ``X-CryptoVol-Key``
+        header on every request.
     base_url:
-        Override the API base URL. Defaults to the RapidAPI gateway.
-    host:
-        Value for the ``X-RapidAPI-Host`` header. You won't need to change
-        this unless you're routing through a different gateway.
+        Override the API base URL. Defaults to the production CryptoVol API.
     timeout:
         Per-request timeout in seconds. Defaults to 30s.
     max_retries:
@@ -86,19 +85,18 @@ class CryptoVol:
         api_key: str,
         *,
         base_url: str = DEFAULT_BASE_URL,
-        host: str = DEFAULT_HOST,
         timeout: float = DEFAULT_TIMEOUT,
         max_retries: int = DEFAULT_MAX_RETRIES,
         user_agent: str = DEFAULT_USER_AGENT,
     ) -> None:
         if not api_key:
             raise ValueError(
-                "api_key is required. Get a key at https://www.cryptovol.io/api"
+                "api_key is required. Sign up at https://www.cryptovol.io/signup "
+                "to get your key."
             )
 
         self.api_key = api_key
         self.base_url = base_url.rstrip("/")
-        self.host = host
         self.timeout = timeout
         self.max_retries = max_retries
 
@@ -106,8 +104,7 @@ class CryptoVol:
             base_url=self.base_url,
             timeout=timeout,
             headers={
-                "X-RapidAPI-Key": api_key,
-                "X-RapidAPI-Host": host,
+                "X-CryptoVol-Key": api_key,
                 "User-Agent": user_agent,
                 "Accept": "application/json",
             },
@@ -283,6 +280,7 @@ class CryptoVol:
         strike_value: float = 1.0,
         *,
         option_type: OptionType = "C",
+        session: Session = "us",
         start_date: Optional[str] = None,
         end_date: Optional[str] = None,
         raw: bool = False,
@@ -291,7 +289,9 @@ class CryptoVol:
 
         Ideal for backtesting, regression analysis, and vol regime monitoring.
 
-        Requires a PRO or ULTRA plan (BASIC plans get 403 on this endpoint).
+        Available on every plan. The history window scales by tier:
+        BASIC = last 30 days, PRO = last 1 year, ULTRA = full archive.
+        BASIC and PRO are limited to the US session; ULTRA gets all three.
 
         Parameters
         ----------
@@ -309,8 +309,11 @@ class CryptoVol:
             Common deltas: 0.10, 0.25.
         option_type:
             ``"C"`` or ``"P"``. Required when ``strike_type="delta"``.
+        session:
+            ``"asia"`` (05:00 UTC), ``"london"`` (12:00 UTC), or ``"us"``
+            (16:00 UTC, default). ``asia``/``london`` require ULTRA.
         start_date / end_date:
-            ``YYYY-MM-DD`` bounds. PRO plans are limited to the last year.
+            ``YYYY-MM-DD`` bounds. Bounded by your plan's history window.
         raw:
             If True, return the parsed JSON dict instead of a typed model.
         """
@@ -320,11 +323,107 @@ class CryptoVol:
             "strike_type": strike_type,
             "strike_value": strike_value,
             "option_type": option_type,
+            "session": session,
             "start_date": start_date,
             "end_date": end_date,
         })
         data = self._request("GET", "/v1/vol-history", params=params)
         return data if raw else VolHistoryResponse.model_validate(data)
+
+    def spot_history(
+        self,
+        ccy: str = "BTC",
+        *,
+        session: Session = "us",
+        start_date: Optional[str] = None,
+        end_date: Optional[str] = None,
+        raw: bool = False,
+    ) -> Union[SpotHistoryResponse, Dict[str, Any]]:
+        """Daily spot price time series per session snapshot.
+
+        Available on every plan. The history window scales by tier:
+        BASIC = last 30 days, PRO = last 1 year, ULTRA = full archive.
+        BASIC and PRO are limited to the US session; ULTRA gets all three.
+
+        Parameters
+        ----------
+        ccy:
+            Asset symbol. Subject to your plan tier.
+        session:
+            ``"asia"``, ``"london"``, or ``"us"`` (default). ``asia``/``london``
+            require ULTRA.
+        start_date / end_date:
+            Optional ``YYYY-MM-DD`` bounds. Defaults to ~1 year (clamped by plan).
+        raw:
+            If True, return the parsed JSON dict instead of a typed model.
+
+        Example
+        -------
+
+            spots = cv.spot_history(ccy="BTC", start_date="2026-04-01")
+            for pt in spots.data[-5:]:
+                print(pt.date, pt.spot)
+        """
+        params = _drop_none({
+            "ccy": ccy,
+            "session": session,
+            "start_date": start_date,
+            "end_date": end_date,
+        })
+        data = self._request("GET", "/v1/spot-history", params=params)
+        return data if raw else SpotHistoryResponse.model_validate(data)
+
+    def realized_vol(
+        self,
+        ccy: str = "BTC",
+        window: int = 30,
+        *,
+        session: Session = "us",
+        start_date: Optional[str] = None,
+        end_date: Optional[str] = None,
+        raw: bool = False,
+    ) -> Union[RealizedVolResponse, Dict[str, Any]]:
+        """Rolling annualized realized volatility from daily spot log-returns.
+
+        RV is reported in percent (e.g. ``38.5`` means 38.5%). Annualization
+        factor is √365 (crypto markets trade 24/7). The first ``window`` days
+        are dropped (insufficient history for the rolling stdev).
+
+        Same plan limits as :meth:`spot_history`: BASIC = 30 days, PRO = 1 year,
+        ULTRA = full archive. BASIC/PRO US-only; ULTRA all sessions.
+
+        Tip: the API computes RV from spot only within the requested date range
+        — it does **not** auto-extend lookback by ``window`` days. To get RV at
+        date *D*, include at least ``window`` prior days in ``start_date``.
+
+        Parameters
+        ----------
+        ccy:
+            Asset symbol.
+        window:
+            Rolling window in days (2–365). Default 30.
+        session:
+            ``"asia"``, ``"london"``, or ``"us"`` (default).
+        start_date / end_date:
+            Optional ``YYYY-MM-DD`` bounds.
+        raw:
+            If True, return the parsed JSON dict instead of a typed model.
+
+        Example
+        -------
+
+            rv = cv.realized_vol(ccy="BTC", window=30)
+            print(f"30d RV: {rv.data[-1].rv:.2f}%")
+        """
+        params = _drop_none({
+            "ccy": ccy,
+            "window": window,
+            "session": session,
+            "start_date": start_date,
+            "end_date": end_date,
+        })
+        data = self._request("GET", "/v1/realized-vol", params=params)
+        return data if raw else RealizedVolResponse.model_validate(data)
 
     # ── HTTP plumbing ────────────────────────────────────────────────────────
 

@@ -173,10 +173,92 @@ class VolHistoryResponse(BaseModel):
     strike_type: str
     strike_value: float
     option_type: Optional[str] = None
+    session: Optional[str] = None
     start_date: Optional[str] = None
     end_date: Optional[str] = None
     count: int
     data: List[VolHistoryPoint] = Field(default_factory=list)
+
+    def to_dataframe(self):  # pragma: no cover — optional dep
+        """Convert ``.data`` to a pandas DataFrame indexed by date."""
+        try:
+            import pandas as pd
+        except ImportError as e:
+            raise ImportError(
+                "pandas is required for .to_dataframe(). "
+                "Install with: pip install cryptovol[pandas]"
+            ) from e
+        df = pd.DataFrame([p.model_dump() for p in self.data])
+        if not df.empty:
+            df["date"] = pd.to_datetime(df["date"])
+            df = df.set_index("date").sort_index()
+        return df
+
+
+# ── /v1/spot-history ──────────────────────────────────────────────────────────
+
+
+class SpotHistoryPoint(BaseModel):
+    """One day of spot price for the requested asset."""
+
+    model_config = ConfigDict(extra="allow")
+
+    date: str
+    spot: float
+
+
+class SpotHistoryResponse(BaseModel):
+    """Response from ``GET /v1/spot-history``."""
+
+    model_config = ConfigDict(extra="allow")
+
+    ccy: str
+    session: str
+    start_date: Optional[str] = None
+    end_date: Optional[str] = None
+    count: int
+    data: List[SpotHistoryPoint] = Field(default_factory=list)
+
+    def to_dataframe(self):  # pragma: no cover — optional dep
+        """Convert ``.data`` to a pandas DataFrame indexed by date."""
+        try:
+            import pandas as pd
+        except ImportError as e:
+            raise ImportError(
+                "pandas is required for .to_dataframe(). "
+                "Install with: pip install cryptovol[pandas]"
+            ) from e
+        df = pd.DataFrame([p.model_dump() for p in self.data])
+        if not df.empty:
+            df["date"] = pd.to_datetime(df["date"])
+            df = df.set_index("date").sort_index()
+        return df
+
+
+# ── /v1/realized-vol ──────────────────────────────────────────────────────────
+
+
+class RealizedVolPoint(BaseModel):
+    """One day of rolling realized volatility (annualized, in percent)."""
+
+    model_config = ConfigDict(extra="allow")
+
+    date: str
+    rv: float
+
+
+class RealizedVolResponse(BaseModel):
+    """Response from ``GET /v1/realized-vol``."""
+
+    model_config = ConfigDict(extra="allow")
+
+    ccy: str
+    session: str
+    window: int
+    start_date: Optional[str] = None
+    end_date: Optional[str] = None
+    count: int
+    data: List[RealizedVolPoint] = Field(default_factory=list)
 
     def to_dataframe(self):  # pragma: no cover — optional dep
         """Convert ``.data`` to a pandas DataFrame indexed by date."""
