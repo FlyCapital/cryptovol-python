@@ -11,7 +11,7 @@ from cryptovol import (
     ValidationError,
 )
 
-BASE = "https://cryptovol.p.rapidapi.com"
+BASE = "https://cryptovol-api-nbakzshi6q-uc.a.run.app"
 
 
 # ── vol_index ────────────────────────────────────────────────────────────────
@@ -229,14 +229,16 @@ def test_missing_api_key_raises():
         CryptoVol(api_key="")
 
 
-def test_sends_rapidapi_headers(client, httpx_mock):
+def test_sends_cryptovol_key_header(client, httpx_mock):
     httpx_mock.add_response(json={"ccy": "BTC", "tenor": "30D", "count": 0, "data": []})
 
     client.vol_index(ccy="BTC", tenor="30D")
 
     request = httpx_mock.get_request()
-    assert request.headers["X-RapidAPI-Key"] == "test-key"
-    assert request.headers["X-RapidAPI-Host"] == "cryptovol.p.rapidapi.com"
+    assert request.headers["X-CryptoVol-Key"] == "test-key"
+    # The legacy RapidAPI headers must not leak through.
+    assert "X-RapidAPI-Key"  not in request.headers
+    assert "X-RapidAPI-Host" not in request.headers
 
 
 def test_context_manager_closes(httpx_mock):
