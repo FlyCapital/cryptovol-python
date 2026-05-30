@@ -157,7 +157,10 @@ def test_vol_history(client, httpx_mock):
         ],
     }
     httpx_mock.add_response(
-        url=f"{BASE}/v1/vol-history?ccy=BTC&tenor=1M&strike_type=delta&strike_value=0.25&option_type=C",
+        url=(
+            f"{BASE}/v1/vol-history?ccy=BTC&tenor=1M"
+            f"&strike_type=delta&strike_value=0.25&option_type=C&session=us"
+        ),
         json=payload,
     )
 
