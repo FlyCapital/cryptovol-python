@@ -27,6 +27,8 @@ from .models import (
     BulkResultItem,
     BulkVolResponse,
     Greeks,
+    RawSurfaceExpiry,
+    RawVolSurface,
     RealizedVolPoint,
     RealizedVolResponse,
     SpotHistoryPoint,
@@ -38,7 +40,7 @@ from .models import (
     VolSurfacePoint,
 )
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"
 
 __all__ = [
     "CryptoVol",
@@ -59,6 +61,8 @@ __all__ = [
     "VolSurfacePoint",
     "BulkVolResponse",
     "BulkResultItem",
+    "RawVolSurface",
+    "RawSurfaceExpiry",
     "VolHistoryResponse",
     "VolHistoryPoint",
     "SpotHistoryResponse",

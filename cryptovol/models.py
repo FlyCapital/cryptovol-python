@@ -151,6 +151,37 @@ class BulkVolResponse(BaseModel):
         return [r for r in self.results if not r.ok]
 
 
+# ── /v1/vol-surface/raw ───────────────────────────────────────────────────────
+
+
+class RawSurfaceExpiry(BaseModel):
+    """Market-quoted vols for one listed expiry: index-aligned ``strikes``/``mkt_vol``."""
+
+    model_config = ConfigDict(extra="allow")
+
+    expiry: str
+    tenor_days: Optional[int] = None
+    forward: Optional[float] = None
+    atm_strike: Optional[float] = None
+    strikes: List[float] = Field(default_factory=list)
+    mkt_vol: List[float] = Field(default_factory=list)
+
+
+class RawVolSurface(BaseModel):
+    """Response from ``GET /v1/vol-surface/raw`` — raw market-quoted surface
+    (discrete strike ladders, before model fitting)."""
+
+    model_config = ConfigDict(extra="allow")
+
+    ccy: str
+    session: str
+    datetime: Optional[str] = None
+    vol_date: str
+    spot: Optional[float] = None
+    count: int
+    expiries: List[RawSurfaceExpiry] = Field(default_factory=list)
+
+
 # ── /v1/vol-history ───────────────────────────────────────────────────────────
 
 

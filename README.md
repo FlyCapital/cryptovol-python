@@ -61,6 +61,7 @@ That's it. The client is typed end-to-end, so your IDE autocompletes every field
 | `cv.vol_index(...)` | `GET /v1/vol-index` | Daily IV index time series (CryptoVIX-style) |
 | `cv.vol_surface(...)` | `GET /v1/vol-surface` | One SABR-interpolated vol point |
 | `cv.vol_surface_bulk(...)` | `POST /v1/vol-surface/bulk` | Many points in one round-trip — efficient |
+| `cv.vol_surface_raw(...)` | `GET /v1/vol-surface/raw` | Raw market-quoted surface (strike ladders, pre-fit) — PRO and ULTRA |
 | `cv.vol_history(...)` | `GET /v1/vol-history` | Constant-maturity historical IV for backtests |
 | `cv.spot_history(...)` | `GET /v1/spot-history` | Daily spot price time series per session |
 | `cv.realized_vol(...)` | `GET /v1/realized-vol` | Rolling annualized RV (√365) from spot log-returns |

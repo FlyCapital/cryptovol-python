@@ -38,6 +38,7 @@ from .exceptions import (
 )
 from .models import (
     BulkVolResponse,
+    RawVolSurface,
     RealizedVolResponse,
     SpotHistoryResponse,
     VolHistoryResponse,
@@ -48,7 +49,7 @@ from .models import (
 DEFAULT_BASE_URL = "https://cryptovol-api-nbakzshi6q-uc.a.run.app"
 DEFAULT_TIMEOUT = 30.0
 DEFAULT_MAX_RETRIES = 3
-DEFAULT_USER_AGENT = "cryptovol-python/0.3.0"
+DEFAULT_USER_AGENT = "cryptovol-python/0.4.0"
 
 StrikeType = Literal["strike", "moneyness", "delta"]
 OptionType = Literal["C", "P"]
@@ -271,6 +272,50 @@ class CryptoVol:
         })
         data = self._request("POST", "/v1/vol-surface/bulk", json=body)
         return data if raw else BulkVolResponse.model_validate(data)
+
+    def vol_surface_raw(
+        self,
+        ccy: str,
+        *,
+        session: Session = "us",
+        date: Optional[str] = None,
+        raw: bool = False,
+    ) -> Union[RawVolSurface, Dict[str, Any]]:
+        """Raw market-quoted vol surface for one snapshot (PRO and ULTRA).
+
+        Returns every listed expiry with its quoted strike ladder
+        (``strikes``) and the market implied vol at each strike
+        (``mkt_vol``, index-aligned), plus ``forward``, ``atm_strike``, and
+        ``spot``. This is the discrete market data *before* model fitting —
+        for a smooth interpolated vol at an arbitrary strike/moneyness/delta
+        use :meth:`vol_surface` or :meth:`vol_surface_bulk`.
+
+        Parameters
+        ----------
+        ccy:
+            Asset symbol.
+        session:
+            ``"asia"``, ``"london"``, or ``"us"``. Subject to your plan tier.
+        date:
+            Optional snapshot date (``YYYY-MM-DD``). Defaults to the latest
+            available snapshot.
+        raw:
+            If True, return the parsed JSON dict instead of a typed model.
+
+        Example
+        -------
+
+            surf = cv.vol_surface_raw(ccy="BTC", session="us")
+            for exp in surf.expiries:
+                print(exp.expiry, exp.forward, len(exp.strikes), "strikes")
+        """
+        params = _drop_none({
+            "ccy": ccy,
+            "session": session,
+            "date": date,
+        })
+        data = self._request("GET", "/v1/vol-surface/raw", params=params)
+        return data if raw else RawVolSurface.model_validate(data)
 
     def vol_history(
         self,
