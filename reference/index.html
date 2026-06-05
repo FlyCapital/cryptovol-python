@@ -497,6 +497,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#cryptovol.CryptoVol.vol_surface_raw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vol_surface_raw
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#cryptovol.CryptoVol.vol_history" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -995,6 +1006,17 @@
     <span class="md-ellipsis">
       
         vol_surface_bulk
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cryptovol.CryptoVol.vol_surface_raw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vol_surface_raw
       
     </span>
   </a>
@@ -2010,6 +2032,120 @@ snapshot is loaded once and reused for every query.</p>
 )
 for item in response.successful:
     print(item.expiry, item.strike, item.vol)
+</code></pre></div>
+</details>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="cryptovol.CryptoVol.vol_surface_raw" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">vol_surface_raw</span>
+
+
+<a href="#cryptovol.CryptoVol.vol_surface_raw" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">vol_surface_raw</span><span class="p">(</span><span class="n">ccy</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="s1">&#39;us&#39;</span><span class="p">,</span> <span class="n">date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">raw</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">RawVolSurface</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Raw market-quoted vol surface for one snapshot (PRO and ULTRA).</p>
+<p>Returns every listed expiry with its quoted strike ladder
+(<code>strikes</code>) and the market implied vol at each strike
+(<code>mkt_vol</code>, index-aligned), plus <code>forward</code>, <code>atm_strike</code>, and
+<code>spot</code>. This is the discrete market data <em>before</em> model fitting —
+for a smooth interpolated vol at an arbitrary strike/moneyness/delta
+use :meth:<code>vol_surface</code> or :meth:<code>vol_surface_bulk</code>.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>ccy</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Asset symbol.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>session</code>
+            </td>
+            <td>
+                  <code><span title="cryptovol.client.Session">Session</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p><code>"asia"</code>, <code>"london"</code>, or <code>"us"</code>. Subject to your plan tier.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;us&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>date</code>
+            </td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional snapshot date (<code>YYYY-MM-DD</code>). Defaults to the latest
+available snapshot.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>raw</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, return the parsed JSON dict instead of a typed model.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <div class="highlight"><pre><span></span><code>surf = cv.vol_surface_raw(ccy=&quot;BTC&quot;, session=&quot;us&quot;)
+for exp in surf.expiries:
+    print(exp.expiry, exp.forward, len(exp.strikes), &quot;strikes&quot;)
 </code></pre></div>
 </details>
 
