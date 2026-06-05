@@ -160,7 +160,6 @@ class RawSurfaceExpiry(BaseModel):
     model_config = ConfigDict(extra="allow")
 
     expiry: str
-    tenor_days: Optional[int] = None
     forward: Optional[float] = None
     atm_strike: Optional[float] = None
     strikes: List[float] = Field(default_factory=list)
