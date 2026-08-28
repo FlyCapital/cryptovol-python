@@ -111,7 +111,7 @@ if resp.failed:
 
 ## 4. Vol history — historical constant-maturity series
 
-`vol_history` is purpose-built for backtests: a clean daily series at a fixed maturity and fixed strike. Available on every plan — the history window scales by tier (BASIC = 30 days, PRO = full archive).
+`vol_history` is purpose-built for backtests: a clean daily series at a fixed maturity and fixed strike. Available on every plan — full archive, no history-window restriction.
 
 ```python
 hist = cv.vol_history(

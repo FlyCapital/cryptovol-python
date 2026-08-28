@@ -140,7 +140,7 @@ class CryptoVol:
         ----------
         ccy:
             Asset symbol — one of ``BTC``, ``ETH``, ``SOL``, ``XRP``, ``AVAX``,
-            ``TRX``. Subject to your plan tier.
+            ``TRX``. Available on every plan.
         tenor:
             Constant-maturity tenor (e.g. ``7D``, ``30D``, ``1M``, ``3M``).
         start_date / end_date:
@@ -192,7 +192,7 @@ class CryptoVol:
             ``"C"`` (call, default) or ``"P"`` (put). Required when
             ``strike_type="delta"``; ignored otherwise.
         session:
-            ``"asia"``, ``"london"``, or ``"us"``. Subject to your plan tier.
+            ``"asia"``, ``"london"``, or ``"us"``. Available on every plan.
         date:
             Optional snapshot date (``YYYY-MM-DD``). Defaults to the latest
             available snapshot.
@@ -295,7 +295,7 @@ class CryptoVol:
         ccy:
             Asset symbol.
         session:
-            ``"asia"``, ``"london"``, or ``"us"``. Subject to your plan tier.
+            ``"asia"``, ``"london"``, or ``"us"``. Available on every plan.
         date:
             Optional snapshot date (``YYYY-MM-DD``). Defaults to the latest
             available snapshot.
@@ -334,9 +334,7 @@ class CryptoVol:
 
         Ideal for backtesting, regression analysis, and vol regime monitoring.
 
-        Available on every plan. The history window scales by tier:
-        BASIC = last 30 days, PRO = full archive.
-        BASIC is limited to the US session; PRO gets asia/london/us.
+        Available on every plan: full archive, all sessions (asia/london/us).
 
         Parameters
         ----------
@@ -356,9 +354,9 @@ class CryptoVol:
             ``"C"`` or ``"P"``. Required when ``strike_type="delta"``.
         session:
             ``"asia"`` (05:00 UTC), ``"london"`` (12:00 UTC), or ``"us"``
-            (16:00 UTC, default). ``asia``/``london`` require PRO.
+            (16:00 UTC, default).
         start_date / end_date:
-            ``YYYY-MM-DD`` bounds. Bounded by your plan's history window.
+            ``YYYY-MM-DD`` bounds.
         raw:
             If True, return the parsed JSON dict instead of a typed model.
         """
@@ -386,19 +384,16 @@ class CryptoVol:
     ) -> Union[SpotHistoryResponse, Dict[str, Any]]:
         """Daily spot price time series per session snapshot.
 
-        Available on every plan. The history window scales by tier:
-        BASIC = last 30 days, PRO = full archive.
-        BASIC is limited to the US session; PRO gets asia/london/us.
+        Available on every plan: full archive, all sessions (asia/london/us).
 
         Parameters
         ----------
         ccy:
-            Asset symbol. Subject to your plan tier.
+            Asset symbol. Available on every plan.
         session:
-            ``"asia"``, ``"london"``, or ``"us"`` (default). ``asia``/``london``
-            require PRO.
+            ``"asia"``, ``"london"``, or ``"us"`` (default).
         start_date / end_date:
-            Optional ``YYYY-MM-DD`` bounds. Defaults to ~1 year (clamped by plan).
+            Optional ``YYYY-MM-DD`` bounds. Defaults to ~1 year.
         raw:
             If True, return the parsed JSON dict instead of a typed model.
 
@@ -434,8 +429,7 @@ class CryptoVol:
         factor is √365 (crypto markets trade 24/7). The first ``window`` days
         are dropped (insufficient history for the rolling stdev).
 
-        Same plan limits as :meth:`spot_history`: BASIC = 30 days, PRO = full
-        archive. BASIC US-only; PRO gets asia/london/us.
+        Available on every plan: full archive, all sessions (asia/london/us).
 
         Tip: the API computes RV from spot only within the requested date range
         — it does **not** auto-extend lookback by ``window`` days. To get RV at

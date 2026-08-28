@@ -62,4 +62,4 @@ hist = cv.vol_history(ccy="BTC", tenor="1M",
 
 ## Get a key
 
-Sign up at **[cryptovol.io/api](https://www.cryptovol.io/api)** — free BASIC tier, no card required, or PRO for full asset/session/history coverage. Every call is billed pay-as-you-go at a flat $0.001, regardless of tier.
+Sign up at **[cryptovol.io/api](https://www.cryptovol.io/api)** — free, no card required. Every account gets full access (all assets, sessions, history, Greeks, raw quotes); every call is billed pay-as-you-go at a flat $0.001.

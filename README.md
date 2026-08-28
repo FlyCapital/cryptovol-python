@@ -26,7 +26,7 @@ pip install "cryptovol[pandas]"
 
 ## Get an API key
 
-Sign up at **[cryptovol.io/signup](https://www.cryptovol.io/signup)** — free BASIC tier, no card required. Your key (`cvk_live_...`) appears on [cryptovol.io/account](https://www.cryptovol.io/account). Every API call is billed pay-as-you-go at $0.001, same rate on every tier; PRO unlocks more assets, sessions, and history depth.
+Sign up at **[cryptovol.io/signup](https://www.cryptovol.io/signup)** — free, no card required. Your key (`cvk_live_...`) appears on [cryptovol.io/account](https://www.cryptovol.io/account). Every account gets full access from day one; every API call is billed pay-as-you-go at $0.001.
 
 ## Quick start
 
@@ -165,7 +165,7 @@ Hierarchy:
 ```
 CryptoVolError                 # base — catch this to handle anything
 ├── AuthenticationError        # 401, or 403 without "plan" in the body
-├── PlanLimitError             # 403 — tier blocks asset/session/history/Greeks
+├── PlanLimitError             # 403 — reserved; every plan has full access today
 ├── NotFoundError              # 404 — no data for that date/session
 ├── ValidationError            # 400 / 422 — malformed params
 ├── RateLimitError             # 429 — quota exceeded
@@ -203,22 +203,11 @@ data = cv.vol_index(ccy="BTC", tenor="30D", raw=True)
 
 ---
 
-## Plan tiers (at a glance)
+## Pricing
 
-All six methods are available on every plan, including Greeks/analytics and raw quotes — every request is metered pay-as-you-go at a **flat $0.001 per API call, regardless of tier**. Tiers differ only in asset coverage, session coverage, and history depth.
+There are no feature tiers — every account gets full access: all six assets (BTC, ETH, SOL, XRP, AVAX, TRX), all three sessions (Asia, London, US), full history, Greeks/analytics, and raw quotes. Every API call is billed pay-as-you-go at a **flat $0.001 per request**, same rate for everyone. Sign up free at [cryptovol.io/signup](https://www.cryptovol.io/signup) — no card required — and start calling immediately.
 
-| | BASIC | PRO |
-|---|---|---|
-| Assets | BTC | BTC, ETH, SOL, XRP, AVAX, TRX |
-| Sessions | US | Asia, London, US |
-| History window (API) | 30 days | Full archive |
-| Greeks / analytics | ✓ | ✓ |
-| Raw quotes (`vol_surface_raw`) | ✓ | ✓ |
-| Price | $0.001 / call | $0.001 / call |
-
-BASIC is free, no card required, and already includes full Greeks and raw quotes — PRO exists for broader asset/session/history coverage, not for unlocking features. (ULTRA has been retired and folded into PRO — existing ULTRA keys keep working with PRO's entitlements.)
-
-The history window applies to `vol_history`, `spot_history`, `realized_vol`, and any date range passed to `vol_index`. Hitting a limit raises `PlanLimitError` — the message tells you which tier unlocks it. Full details at **[cryptovol.io/api](https://www.cryptovol.io/api)**.
+Full details at **[cryptovol.io/api](https://www.cryptovol.io/api)**.
 
 ---
 

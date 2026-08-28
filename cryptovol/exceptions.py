@@ -37,10 +37,10 @@ class AuthenticationError(CryptoVolError):
 class PlanLimitError(CryptoVolError):
     """Raised on 403 when the request hits a plan-tier limit.
 
-    Examples: querying ETH on a BASIC plan, requesting Greeks without PRO,
-    querying dates older than your plan's history window.
-
-    The server's error message typically tells you which tier unlocks the feature.
+    Every plan currently has full access — all assets, sessions, history,
+    Greeks, and raw quotes are included regardless of tier, and pricing is
+    flat pay-as-you-go ($0.001/call) — so this shouldn't fire in practice
+    today. Kept for forward compatibility in case tier-based limits return.
     """
 
 

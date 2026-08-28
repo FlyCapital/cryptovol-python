@@ -7,7 +7,10 @@ Every API failure becomes a typed Python exception. Catch the base class to hand
 ```
 CryptoVolError                  # base — catch this to handle anything
 ├── AuthenticationError         # 401, or 403 without "plan" in the body
-├── PlanLimitError              # 403 — tier blocks asset/session/history/Greeks
+├── PlanLimitError              # 403 — reserved; every plan currently has full
+│                                #   access (all assets/sessions/history/Greeks),
+│                                #   pay-as-you-go at $0.001/call, so this
+│                                #   shouldn't fire in practice today
 ├── NotFoundError               # 404 — no data for that date/session
 ├── ValidationError             # 400 / 422 — malformed params
 ├── RateLimitError              # 429 — quota exceeded
@@ -37,7 +40,7 @@ except CryptoVolError as e:
 
 ### React to plan limits
 
-If you ship code that might run under different subscription tiers, fall back gracefully:
+Every plan currently has full access — all assets, all sessions, full history, Greeks, and raw quotes — so `PlanLimitError` shouldn't fire under normal use today. It's kept in the hierarchy for forward compatibility; catch it if you want to be defensive against future plan changes:
 
 ```python
 from cryptovol import PlanLimitError
@@ -47,7 +50,7 @@ try:
                         strike_type="moneyness", strike_value=1.0,
                         session="asia")
 except PlanLimitError:
-    # Asia session is PRO-only — fall back to US
+    # Defensive fallback — shouldn't trigger under the current flat-access model
     pt = cv.vol_surface(ccy="ETH", expiry="2026-12-26",
                         strike_type="moneyness", strike_value=1.0,
                         session="us")
