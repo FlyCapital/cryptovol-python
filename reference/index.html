@@ -1646,7 +1646,7 @@ own product and want clean attribution in server logs.</p>
             <td>
               <div class="doc-md-description">
                 <p>Asset symbol — one of <code>BTC</code>, <code>ETH</code>, <code>SOL</code>, <code>XRP</code>, <code>AVAX</code>,
-<code>TRX</code>. Subject to your plan tier.</p>
+<code>TRX</code>. Available on every plan.</p>
               </div>
             </td>
             <td>
@@ -1833,7 +1833,7 @@ relative to the snapshot date.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p><code>"asia"</code>, <code>"london"</code>, or <code>"us"</code>. Subject to your plan tier.</p>
+                <p><code>"asia"</code>, <code>"london"</code>, or <code>"us"</code>. Available on every plan.</p>
               </div>
             </td>
             <td>
@@ -2097,7 +2097,7 @@ use :meth:<code>vol_surface</code> or :meth:<code>vol_surface_bulk</code>.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p><code>"asia"</code>, <code>"london"</code>, or <code>"us"</code>. Subject to your plan tier.</p>
+                <p><code>"asia"</code>, <code>"london"</code>, or <code>"us"</code>. Available on every plan.</p>
               </div>
             </td>
             <td>
@@ -2168,9 +2168,7 @@ for exp in surf.expiries:
 
         <p>Historical time series at a constant maturity and constant strike.</p>
 <p>Ideal for backtesting, regression analysis, and vol regime monitoring.</p>
-<p>Available on every plan. The history window scales by tier:
-BASIC = last 30 days, PRO = full archive.
-BASIC is limited to the US session; PRO gets asia/london/us.</p>
+<p>Available on every plan: full archive, all sessions (asia/london/us).</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -2278,7 +2276,7 @@ Common deltas: 0.10, 0.25.</p>
             <td>
               <div class="doc-md-description">
                 <p><code>"asia"</code> (05:00 UTC), <code>"london"</code> (12:00 UTC), or <code>"us"</code>
-(16:00 UTC, default). <code>asia</code>/<code>london</code> require PRO.</p>
+(16:00 UTC, default).</p>
               </div>
             </td>
             <td>
@@ -2294,7 +2292,7 @@ Common deltas: 0.10, 0.25.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p><code>YYYY-MM-DD</code> bounds. Bounded by your plan's history window.</p>
+                <p><code>YYYY-MM-DD</code> bounds.</p>
               </div>
             </td>
             <td>
@@ -2339,9 +2337,7 @@ Common deltas: 0.10, 0.25.</p>
     <div class="doc doc-contents ">
 
         <p>Daily spot price time series per session snapshot.</p>
-<p>Available on every plan. The history window scales by tier:
-BASIC = last 30 days, PRO = full archive.
-BASIC is limited to the US session; PRO gets asia/london/us.</p>
+<p>Available on every plan: full archive, all sessions (asia/london/us).</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -2364,7 +2360,7 @@ BASIC is limited to the US session; PRO gets asia/london/us.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Asset symbol. Subject to your plan tier.</p>
+                <p>Asset symbol. Available on every plan.</p>
               </div>
             </td>
             <td>
@@ -2380,8 +2376,7 @@ BASIC is limited to the US session; PRO gets asia/london/us.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p><code>"asia"</code>, <code>"london"</code>, or <code>"us"</code> (default). <code>asia</code>/<code>london</code>
-require PRO.</p>
+                <p><code>"asia"</code>, <code>"london"</code>, or <code>"us"</code> (default).</p>
               </div>
             </td>
             <td>
@@ -2397,7 +2392,7 @@ require PRO.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Optional <code>YYYY-MM-DD</code> bounds. Defaults to ~1 year (clamped by plan).</p>
+                <p>Optional <code>YYYY-MM-DD</code> bounds. Defaults to ~1 year.</p>
               </div>
             </td>
             <td>
@@ -2453,8 +2448,7 @@ for pt in spots.data[-5:]:
 <p>RV is reported in percent (e.g. <code>38.5</code> means 38.5%). Annualization
 factor is √365 (crypto markets trade 24/7). The first <code>window</code> days
 are dropped (insufficient history for the rolling stdev).</p>
-<p>Same plan limits as :meth:<code>spot_history</code>: BASIC = 30 days, PRO = full
-archive. BASIC US-only; PRO gets asia/london/us.</p>
+<p>Available on every plan: full archive, all sessions (asia/london/us).</p>
 <p>Tip: the API computes RV from spot only within the requested date range
 — it does <strong>not</strong> auto-extend lookback by <code>window</code> days. To get RV at
 date <em>D</em>, include at least <code>window</code> prior days in <code>start_date</code>.</p>
@@ -3467,9 +3461,10 @@ print(f"30d RV: {rv.data[-1].rv:.2f}%")
 
 
         <p>Raised on 403 when the request hits a plan-tier limit.</p>
-<p>Examples: querying ETH on a BASIC plan, requesting Greeks without PRO,
-querying dates older than your plan's history window.</p>
-<p>The server's error message typically tells you which tier unlocks the feature.</p>
+<p>Every plan currently has full access — all assets, sessions, history,
+Greeks, and raw quotes are included regardless of tier, and pricing is
+flat pay-as-you-go ($0.001/call) — so this shouldn't fire in practice
+today. Kept for forward compatibility in case tier-based limits return.</p>
 
 
 
