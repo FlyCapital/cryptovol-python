@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -1617,7 +1617,7 @@ own product and want clean attribution in server logs.</p>
 
 
 <a href="#cryptovol.CryptoVol.vol_index" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">vol_index</span><span class="p">(</span><span class="n">ccy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;BTC&#39;</span><span class="p">,</span> <span class="n">tenor</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;30D&#39;</span><span class="p">,</span> <span class="n">start_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">raw</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">VolIndexResponse</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">vol_index</span><span class="p">(</span><span class="n">ccy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'BTC'</span><span class="p">,</span> <span class="n">tenor</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'30D'</span><span class="p">,</span> <span class="n">start_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">raw</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">VolIndexResponse</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -1718,7 +1718,7 @@ the last year (or the most that your plan allows).</p>
 
 
 <a href="#cryptovol.CryptoVol.vol_surface" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">vol_surface</span><span class="p">(</span><span class="n">ccy</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">expiry</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">strike_type</span><span class="p">:</span> <span class="n">StrikeType</span><span class="p">,</span> <span class="n">strike_value</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">option_type</span><span class="p">:</span> <span class="n">OptionType</span> <span class="o">=</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="s1">&#39;us&#39;</span><span class="p">,</span> <span class="n">date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">include_analytics</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">raw</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">VolSurfacePoint</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">vol_surface</span><span class="p">(</span><span class="n">ccy</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">expiry</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">strike_type</span><span class="p">:</span> <span class="n">StrikeType</span><span class="p">,</span> <span class="n">strike_value</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">option_type</span><span class="p">:</span> <span class="n">OptionType</span> <span class="o">=</span> <span class="s1">'C'</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="s1">'us'</span><span class="p">,</span> <span class="n">date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">include_analytics</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">raw</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">VolSurfacePoint</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -1867,7 +1867,7 @@ available snapshot.</p>
             <td>
               <div class="doc-md-description">
                 <p>If True, also return spot, forward, yield rate, BS price, and Greeks.
-Requires a PRO or ULTRA plan.</p>
+Included on every plan, including free BASIC.</p>
               </div>
             </td>
             <td>
@@ -1906,7 +1906,7 @@ Requires a PRO or ULTRA plan.</p>
 
 
 <a href="#cryptovol.CryptoVol.vol_surface_bulk" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">vol_surface_bulk</span><span class="p">(</span><span class="n">ccy</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">queries</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="o">*</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="s1">&#39;us&#39;</span><span class="p">,</span> <span class="n">date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">raw</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">BulkVolResponse</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">vol_surface_bulk</span><span class="p">(</span><span class="n">ccy</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">queries</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="o">*</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="s1">'us'</span><span class="p">,</span> <span class="n">date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">raw</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">BulkVolResponse</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -2021,13 +2021,13 @@ snapshot is loaded once and reused for every query.</p>
 <details class="example" open>
   <summary>Example</summary>
   <div class="highlight"><pre><span></span><code>response = cv.vol_surface_bulk(
-    ccy=&quot;BTC&quot;,
+    ccy="BTC",
     queries=[
-        {&quot;expiry&quot;: &quot;2026-09-26&quot;, &quot;strike_type&quot;: &quot;moneyness&quot;, &quot;strike_value&quot;: 0.9},
-        {&quot;expiry&quot;: &quot;2026-09-26&quot;, &quot;strike_type&quot;: &quot;moneyness&quot;, &quot;strike_value&quot;: 1.0},
-        {&quot;expiry&quot;: &quot;2026-09-26&quot;, &quot;strike_type&quot;: &quot;moneyness&quot;, &quot;strike_value&quot;: 1.1},
-        {&quot;expiry&quot;: &quot;2026-09-26&quot;, &quot;strike_type&quot;: &quot;delta&quot;,
-         &quot;strike_value&quot;: 0.25, &quot;option_type&quot;: &quot;C&quot;, &quot;include_analytics&quot;: True},
+        {"expiry": "2026-09-26", "strike_type": "moneyness", "strike_value": 0.9},
+        {"expiry": "2026-09-26", "strike_type": "moneyness", "strike_value": 1.0},
+        {"expiry": "2026-09-26", "strike_type": "moneyness", "strike_value": 1.1},
+        {"expiry": "2026-09-26", "strike_type": "delta",
+         "strike_value": 0.25, "option_type": "C", "include_analytics": True},
     ],
 )
 for item in response.successful:
@@ -2047,12 +2047,12 @@ for item in response.successful:
 
 
 <a href="#cryptovol.CryptoVol.vol_surface_raw" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">vol_surface_raw</span><span class="p">(</span><span class="n">ccy</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="s1">&#39;us&#39;</span><span class="p">,</span> <span class="n">date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">raw</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">RawVolSurface</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">vol_surface_raw</span><span class="p">(</span><span class="n">ccy</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="s1">'us'</span><span class="p">,</span> <span class="n">date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">raw</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">RawVolSurface</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
 
-        <p>Raw market-quoted vol surface for one snapshot (PRO and ULTRA).</p>
+        <p>Raw market-quoted vol surface for one snapshot (available on every plan).</p>
 <p>Returns every listed expiry with its quoted strike ladder
 (<code>strikes</code>) and the market implied vol at each strike
 (<code>mkt_vol</code>, index-aligned), plus <code>forward</code>, <code>atm_strike</code>, and
@@ -2143,9 +2143,9 @@ available snapshot.</p>
 
 <details class="example" open>
   <summary>Example</summary>
-  <div class="highlight"><pre><span></span><code>surf = cv.vol_surface_raw(ccy=&quot;BTC&quot;, session=&quot;us&quot;)
+  <div class="highlight"><pre><span></span><code>surf = cv.vol_surface_raw(ccy="BTC", session="us")
 for exp in surf.expiries:
-    print(exp.expiry, exp.forward, len(exp.strikes), &quot;strikes&quot;)
+    print(exp.expiry, exp.forward, len(exp.strikes), "strikes")
 </code></pre></div>
 </details>
 
@@ -2161,7 +2161,7 @@ for exp in surf.expiries:
 
 
 <a href="#cryptovol.CryptoVol.vol_history" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">vol_history</span><span class="p">(</span><span class="n">ccy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;BTC&#39;</span><span class="p">,</span> <span class="n">tenor</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;1M&#39;</span><span class="p">,</span> <span class="n">strike_type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;moneyness&#39;</span><span class="p">,</span> <span class="s1">&#39;delta&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;moneyness&#39;</span><span class="p">,</span> <span class="n">strike_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">option_type</span><span class="p">:</span> <span class="n">OptionType</span> <span class="o">=</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="s1">&#39;us&#39;</span><span class="p">,</span> <span class="n">start_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">raw</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">VolHistoryResponse</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">vol_history</span><span class="p">(</span><span class="n">ccy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'BTC'</span><span class="p">,</span> <span class="n">tenor</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'1M'</span><span class="p">,</span> <span class="n">strike_type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">'moneyness'</span><span class="p">,</span> <span class="s1">'delta'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'moneyness'</span><span class="p">,</span> <span class="n">strike_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">option_type</span><span class="p">:</span> <span class="n">OptionType</span> <span class="o">=</span> <span class="s1">'C'</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="s1">'us'</span><span class="p">,</span> <span class="n">start_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">raw</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">VolHistoryResponse</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -2169,8 +2169,8 @@ for exp in surf.expiries:
         <p>Historical time series at a constant maturity and constant strike.</p>
 <p>Ideal for backtesting, regression analysis, and vol regime monitoring.</p>
 <p>Available on every plan. The history window scales by tier:
-BASIC = last 30 days, PRO = last 1 year, ULTRA = full archive.
-BASIC and PRO are limited to the US session; ULTRA gets all three.</p>
+BASIC = last 30 days, PRO = full archive.
+BASIC is limited to the US session; PRO gets asia/london/us.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -2278,7 +2278,7 @@ Common deltas: 0.10, 0.25.</p>
             <td>
               <div class="doc-md-description">
                 <p><code>"asia"</code> (05:00 UTC), <code>"london"</code> (12:00 UTC), or <code>"us"</code>
-(16:00 UTC, default). <code>asia</code>/<code>london</code> require ULTRA.</p>
+(16:00 UTC, default). <code>asia</code>/<code>london</code> require PRO.</p>
               </div>
             </td>
             <td>
@@ -2333,15 +2333,15 @@ Common deltas: 0.10, 0.25.</p>
 
 
 <a href="#cryptovol.CryptoVol.spot_history" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">spot_history</span><span class="p">(</span><span class="n">ccy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;BTC&#39;</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="s1">&#39;us&#39;</span><span class="p">,</span> <span class="n">start_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">raw</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">SpotHistoryResponse</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">spot_history</span><span class="p">(</span><span class="n">ccy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'BTC'</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="s1">'us'</span><span class="p">,</span> <span class="n">start_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">raw</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">SpotHistoryResponse</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
 
         <p>Daily spot price time series per session snapshot.</p>
 <p>Available on every plan. The history window scales by tier:
-BASIC = last 30 days, PRO = last 1 year, ULTRA = full archive.
-BASIC and PRO are limited to the US session; ULTRA gets all three.</p>
+BASIC = last 30 days, PRO = full archive.
+BASIC is limited to the US session; PRO gets asia/london/us.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -2381,7 +2381,7 @@ BASIC and PRO are limited to the US session; ULTRA gets all three.</p>
             <td>
               <div class="doc-md-description">
                 <p><code>"asia"</code>, <code>"london"</code>, or <code>"us"</code> (default). <code>asia</code>/<code>london</code>
-require ULTRA.</p>
+require PRO.</p>
               </div>
             </td>
             <td>
@@ -2426,7 +2426,7 @@ require ULTRA.</p>
 
 <details class="example" open>
   <summary>Example</summary>
-  <div class="highlight"><pre><span></span><code>spots = cv.spot_history(ccy=&quot;BTC&quot;, start_date=&quot;2026-04-01&quot;)
+  <div class="highlight"><pre><span></span><code>spots = cv.spot_history(ccy="BTC", start_date="2026-04-01")
 for pt in spots.data[-5:]:
     print(pt.date, pt.spot)
 </code></pre></div>
@@ -2444,7 +2444,7 @@ for pt in spots.data[-5:]:
 
 
 <a href="#cryptovol.CryptoVol.realized_vol" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">realized_vol</span><span class="p">(</span><span class="n">ccy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;BTC&#39;</span><span class="p">,</span> <span class="n">window</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="s1">&#39;us&#39;</span><span class="p">,</span> <span class="n">start_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">raw</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">RealizedVolResponse</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">realized_vol</span><span class="p">(</span><span class="n">ccy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'BTC'</span><span class="p">,</span> <span class="n">window</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="s1">'us'</span><span class="p">,</span> <span class="n">start_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">raw</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">RealizedVolResponse</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -2453,8 +2453,8 @@ for pt in spots.data[-5:]:
 <p>RV is reported in percent (e.g. <code>38.5</code> means 38.5%). Annualization
 factor is √365 (crypto markets trade 24/7). The first <code>window</code> days
 are dropped (insufficient history for the rolling stdev).</p>
-<p>Same plan limits as :meth:<code>spot_history</code>: BASIC = 30 days, PRO = 1 year,
-ULTRA = full archive. BASIC/PRO US-only; ULTRA all sessions.</p>
+<p>Same plan limits as :meth:<code>spot_history</code>: BASIC = 30 days, PRO = full
+archive. BASIC US-only; PRO gets asia/london/us.</p>
 <p>Tip: the API computes RV from spot only within the requested date range
 — it does <strong>not</strong> auto-extend lookback by <code>window</code> days. To get RV at
 date <em>D</em>, include at least <code>window</code> prior days in <code>start_date</code>.</p>
@@ -2557,8 +2557,8 @@ date <em>D</em>, include at least <code>window</code> prior days in <code>start_
 
 <details class="example" open>
   <summary>Example</summary>
-  <div class="highlight"><pre><span></span><code>rv = cv.realized_vol(ccy=&quot;BTC&quot;, window=30)
-print(f&quot;30d RV: {rv.data[-1].rv:.2f}%&quot;)
+  <div class="highlight"><pre><span></span><code>rv = cv.realized_vol(ccy="BTC", window=30)
+print(f"30d RV: {rv.data[-1].rv:.2f}%")
 </code></pre></div>
 </details>
 
@@ -3273,7 +3273,7 @@ print(f&quot;30d RV: {rv.data[-1].rv:.2f}%&quot;)
 
 
 
-        <p>Spot, forward, rate, BS price, and Greeks (PRO and ULTRA only).</p>
+        <p>Spot, forward, rate, BS price, and Greeks (available on every plan).</p>
 
 
 
@@ -3824,7 +3824,7 @@ querying dates older than your plan's history window.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "content.code.copy", "content.code.annotate", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

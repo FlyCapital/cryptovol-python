@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
@@ -587,36 +587,36 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>cryptovol
 </code></pre></div>
 <p>For pandas integration:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;cryptovol[pandas]&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">"cryptovol[pandas]"</span>
 </code></pre></div>
 <h2 id="a-30-second-tour">A 30-second tour<a class="headerlink" href="#a-30-second-tour" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">cryptovol</span><span class="w"> </span><span class="kn">import</span> <span class="n">CryptoVol</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">cv</span> <span class="o">=</span> <span class="n">CryptoVol</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_RAPIDAPI_KEY&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">cv</span> <span class="o">=</span> <span class="n">CryptoVol</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">"YOUR_RAPIDAPI_KEY"</span><span class="p">)</span>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># Daily IV index</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">idx</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">vol_index</span><span class="p">(</span><span class="n">ccy</span><span class="o">=</span><span class="s2">&quot;BTC&quot;</span><span class="p">,</span> <span class="n">tenor</span><span class="o">=</span><span class="s2">&quot;30D&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">idx</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">vol_index</span><span class="p">(</span><span class="n">ccy</span><span class="o">=</span><span class="s2">"BTC"</span><span class="p">,</span> <span class="n">tenor</span><span class="o">=</span><span class="s2">"30D"</span><span class="p">)</span>
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># Single vol point with Greeks</span>
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="n">pt</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">vol_surface</span><span class="p">(</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="n">ccy</span><span class="o">=</span><span class="s2">&quot;BTC&quot;</span><span class="p">,</span> <span class="n">expiry</span><span class="o">=</span><span class="s2">&quot;2026-12-26&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="n">strike_type</span><span class="o">=</span><span class="s2">&quot;delta&quot;</span><span class="p">,</span> <span class="n">strike_value</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">option_type</span><span class="o">=</span><span class="s2">&quot;C&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="n">ccy</span><span class="o">=</span><span class="s2">"BTC"</span><span class="p">,</span> <span class="n">expiry</span><span class="o">=</span><span class="s2">"2026-12-26"</span><span class="p">,</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="n">strike_type</span><span class="o">=</span><span class="s2">"delta"</span><span class="p">,</span> <span class="n">strike_value</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">option_type</span><span class="o">=</span><span class="s2">"C"</span><span class="p">,</span>
 <a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="n">include_analytics</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="p">)</span>
 <a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="nb">print</span><span class="p">(</span><span class="n">pt</span><span class="o">.</span><span class="n">vol</span><span class="p">,</span> <span class="n">pt</span><span class="o">.</span><span class="n">analytics</span><span class="o">.</span><span class="n">greeks</span><span class="o">.</span><span class="n">delta</span><span class="p">)</span>
 <a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
 <a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="c1"># Many points at once</span>
 <a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="n">resp</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">vol_surface_bulk</span><span class="p">(</span>
-<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    <span class="n">ccy</span><span class="o">=</span><span class="s2">&quot;BTC&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    <span class="n">ccy</span><span class="o">=</span><span class="s2">"BTC"</span><span class="p">,</span>
 <a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    <span class="n">queries</span><span class="o">=</span><span class="p">[</span>
-<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>        <span class="p">{</span><span class="s2">&quot;expiry&quot;</span><span class="p">:</span> <span class="s2">&quot;2026-09-26&quot;</span><span class="p">,</span> <span class="s2">&quot;strike_type&quot;</span><span class="p">:</span> <span class="s2">&quot;moneyness&quot;</span><span class="p">,</span> <span class="s2">&quot;strike_value&quot;</span><span class="p">:</span> <span class="n">m</span><span class="p">}</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>        <span class="p">{</span><span class="s2">"expiry"</span><span class="p">:</span> <span class="s2">"2026-09-26"</span><span class="p">,</span> <span class="s2">"strike_type"</span><span class="p">:</span> <span class="s2">"moneyness"</span><span class="p">,</span> <span class="s2">"strike_value"</span><span class="p">:</span> <span class="n">m</span><span class="p">}</span>
 <a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">]</span>
 <a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>    <span class="p">],</span>
 <a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="p">)</span>
 <a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>
 <a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="c1"># Constant-maturity history</span>
-<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="n">hist</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">vol_history</span><span class="p">(</span><span class="n">ccy</span><span class="o">=</span><span class="s2">&quot;BTC&quot;</span><span class="p">,</span> <span class="n">tenor</span><span class="o">=</span><span class="s2">&quot;1M&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>                      <span class="n">strike_type</span><span class="o">=</span><span class="s2">&quot;moneyness&quot;</span><span class="p">,</span> <span class="n">strike_value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="n">hist</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">vol_history</span><span class="p">(</span><span class="n">ccy</span><span class="o">=</span><span class="s2">"BTC"</span><span class="p">,</span> <span class="n">tenor</span><span class="o">=</span><span class="s2">"1M"</span><span class="p">,</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>                      <span class="n">strike_type</span><span class="o">=</span><span class="s2">"moneyness"</span><span class="p">,</span> <span class="n">strike_value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
 <ul>
@@ -626,7 +626,7 @@
 <li><a href="reference/">API reference</a> — every method, parameter, and return type</li>
 </ul>
 <h2 id="get-a-key">Get a key<a class="headerlink" href="#get-a-key" title="Permanent link">&para;</a></h2>
-<p>Sign up at <strong><a href="https://www.cryptovol.io/api">cryptovol.io/api</a></strong> — BASIC, PRO, and ULTRA tiers available.</p>
+<p>Sign up at <strong><a href="https://www.cryptovol.io/api">cryptovol.io/api</a></strong> — free BASIC tier, no card required, or PRO for full asset/session/history coverage. Every call is billed pay-as-you-go at a flat $0.001, regardless of tier.</p>
 
 
 
@@ -712,7 +712,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.expand", "navigation.top", "content.code.copy", "content.code.annotate", "search.suggest", "search.highlight"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
