@@ -31,7 +31,7 @@ class Greeks(BaseModel):
 
 
 class Analytics(BaseModel):
-    """Spot, forward, rate, BS price, and Greeks (PRO and ULTRA only)."""
+    """Spot, forward, rate, BS price, and Greeks (available on every plan)."""
 
     model_config = ConfigDict(extra="allow")
 

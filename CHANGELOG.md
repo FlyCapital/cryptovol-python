@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   [cryptovol.io/account](https://www.cryptovol.io/account)) as `api_key=` —
   the SDK handles the rest.
 - **Default `base_url`** moved from the RapidAPI gateway to the
-  self-hosted CryptoVol API at `https://cryptovol-api-nbakzshi6q-uc.a.run.app`.
+  self-hosted CryptoVol API at `https://api.cryptovol.io`.
   If you have an existing RapidAPI subscription, override
   `base_url="https://cryptovol.p.rapidapi.com"` and continue to use the
   legacy `X-RapidAPI-Key` workflow by passing the key normally — the

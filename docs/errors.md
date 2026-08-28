@@ -47,7 +47,7 @@ try:
                         strike_type="moneyness", strike_value=1.0,
                         session="asia")
 except PlanLimitError:
-    # Asia session is ULTRA-only — fall back to US
+    # Asia session is PRO-only — fall back to US
     pt = cv.vol_surface(ccy="ETH", expiry="2026-12-26",
                         strike_type="moneyness", strike_value=1.0,
                         session="us")

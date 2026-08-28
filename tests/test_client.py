@@ -11,7 +11,7 @@ from cryptovol import (
     ValidationError,
 )
 
-BASE = "https://cryptovol-api-nbakzshi6q-uc.a.run.app"
+BASE = "https://api.cryptovol.io"
 
 
 # ── vol_index ────────────────────────────────────────────────────────────────

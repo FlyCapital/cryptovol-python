@@ -46,10 +46,10 @@ from .models import (
     VolSurfacePoint,
 )
 
-DEFAULT_BASE_URL = "https://cryptovol-api-nbakzshi6q-uc.a.run.app"
+DEFAULT_BASE_URL = "https://api.cryptovol.io"
 DEFAULT_TIMEOUT = 30.0
 DEFAULT_MAX_RETRIES = 3
-DEFAULT_USER_AGENT = "cryptovol-python/0.4.0"
+DEFAULT_USER_AGENT = "cryptovol-python/0.4.1"
 
 StrikeType = Literal["strike", "moneyness", "delta"]
 OptionType = Literal["C", "P"]
@@ -198,7 +198,7 @@ class CryptoVol:
             available snapshot.
         include_analytics:
             If True, also return spot, forward, yield rate, BS price, and Greeks.
-            Requires a PRO or ULTRA plan.
+            Included on every plan, including free BASIC.
         raw:
             If True, return the parsed JSON dict instead of a typed model.
         """
@@ -281,7 +281,7 @@ class CryptoVol:
         date: Optional[str] = None,
         raw: bool = False,
     ) -> Union[RawVolSurface, Dict[str, Any]]:
-        """Raw market-quoted vol surface for one snapshot (PRO and ULTRA).
+        """Raw market-quoted vol surface for one snapshot (available on every plan).
 
         Returns every listed expiry with its quoted strike ladder
         (``strikes``) and the market implied vol at each strike
@@ -335,8 +335,8 @@ class CryptoVol:
         Ideal for backtesting, regression analysis, and vol regime monitoring.
 
         Available on every plan. The history window scales by tier:
-        BASIC = last 30 days, PRO = last 1 year, ULTRA = full archive.
-        BASIC and PRO are limited to the US session; ULTRA gets all three.
+        BASIC = last 30 days, PRO = full archive.
+        BASIC is limited to the US session; PRO gets asia/london/us.
 
         Parameters
         ----------
@@ -356,7 +356,7 @@ class CryptoVol:
             ``"C"`` or ``"P"``. Required when ``strike_type="delta"``.
         session:
             ``"asia"`` (05:00 UTC), ``"london"`` (12:00 UTC), or ``"us"``
-            (16:00 UTC, default). ``asia``/``london`` require ULTRA.
+            (16:00 UTC, default). ``asia``/``london`` require PRO.
         start_date / end_date:
             ``YYYY-MM-DD`` bounds. Bounded by your plan's history window.
         raw:
@@ -387,8 +387,8 @@ class CryptoVol:
         """Daily spot price time series per session snapshot.
 
         Available on every plan. The history window scales by tier:
-        BASIC = last 30 days, PRO = last 1 year, ULTRA = full archive.
-        BASIC and PRO are limited to the US session; ULTRA gets all three.
+        BASIC = last 30 days, PRO = full archive.
+        BASIC is limited to the US session; PRO gets asia/london/us.
 
         Parameters
         ----------
@@ -396,7 +396,7 @@ class CryptoVol:
             Asset symbol. Subject to your plan tier.
         session:
             ``"asia"``, ``"london"``, or ``"us"`` (default). ``asia``/``london``
-            require ULTRA.
+            require PRO.
         start_date / end_date:
             Optional ``YYYY-MM-DD`` bounds. Defaults to ~1 year (clamped by plan).
         raw:
@@ -434,8 +434,8 @@ class CryptoVol:
         factor is √365 (crypto markets trade 24/7). The first ``window`` days
         are dropped (insufficient history for the rolling stdev).
 
-        Same plan limits as :meth:`spot_history`: BASIC = 30 days, PRO = 1 year,
-        ULTRA = full archive. BASIC/PRO US-only; ULTRA all sessions.
+        Same plan limits as :meth:`spot_history`: BASIC = 30 days, PRO = full
+        archive. BASIC US-only; PRO gets asia/london/us.
 
         Tip: the API computes RV from spot only within the requested date range
         — it does **not** auto-extend lookback by ``window`` days. To get RV at

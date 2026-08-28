@@ -1,4 +1,4 @@
-"""Get full Greeks for a 25-delta call (PRO/ULTRA only)."""
+"""Get full Greeks for a 25-delta call (available on every plan, including free BASIC)."""
 import os
 
 from cryptovol import CryptoVol

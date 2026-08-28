@@ -1,7 +1,7 @@
 """Graceful handling of plan-tier errors.
 
 If your code might run under multiple subscription tiers (e.g. a BASIC dev key
-locally and an ULTRA key in prod), catch ``PlanLimitError`` to fall back nicely.
+locally and a PRO key in prod), catch ``PlanLimitError`` to fall back nicely.
 """
 import os
 
@@ -10,7 +10,7 @@ from cryptovol import CryptoVol, PlanLimitError, ValidationError
 cv = CryptoVol(api_key=os.environ["CRYPTOVOL_API_KEY"])
 
 try:
-    # The Asia session is ULTRA-only; on BASIC/PRO this raises PlanLimitError.
+    # The Asia session is PRO-only; on BASIC this raises PlanLimitError.
     pt = cv.vol_surface(
         ccy="BTC", expiry="2026-12-26",
         strike_type="moneyness", strike_value=1.0,

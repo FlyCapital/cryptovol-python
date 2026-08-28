@@ -1,4 +1,4 @@
-"""Build a 25-delta risk-reversal historical series (PRO/ULTRA only).
+"""Build a 25-delta risk-reversal historical series (available on every plan).
 
 The 25Δ RR is a standard skew measure: 25Δ-call IV minus 25Δ-put IV.
 Positive RR = call skew; negative RR = put skew (typical for risk-off regimes).

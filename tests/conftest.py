@@ -3,7 +3,7 @@ import pytest
 
 from cryptovol import CryptoVol
 
-TEST_BASE_URL = "https://cryptovol-api-nbakzshi6q-uc.a.run.app"
+TEST_BASE_URL = "https://api.cryptovol.io"
 
 
 @pytest.fixture

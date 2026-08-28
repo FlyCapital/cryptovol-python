@@ -26,7 +26,7 @@ pip install "cryptovol[pandas]"
 
 ## Get an API key
 
-Sign up at **[cryptovol.io/signup](https://www.cryptovol.io/signup)** — free BASIC tier, no card required. Your key (`cvk_live_...`) appears on [cryptovol.io/account](https://www.cryptovol.io/account). PRO and ULTRA tiers unlock higher quotas and more assets.
+Sign up at **[cryptovol.io/signup](https://www.cryptovol.io/signup)** — free BASIC tier, no card required. Your key (`cvk_live_...`) appears on [cryptovol.io/account](https://www.cryptovol.io/account). Every API call is billed pay-as-you-go at $0.001, same rate on every tier; PRO unlocks more assets, sessions, and history depth.
 
 ## Quick start
 
@@ -61,7 +61,7 @@ That's it. The client is typed end-to-end, so your IDE autocompletes every field
 | `cv.vol_index(...)` | `GET /v1/vol-index` | Daily IV index time series (CryptoVIX-style) |
 | `cv.vol_surface(...)` | `GET /v1/vol-surface` | One SABR-interpolated vol point |
 | `cv.vol_surface_bulk(...)` | `POST /v1/vol-surface/bulk` | Many points in one round-trip — efficient |
-| `cv.vol_surface_raw(...)` | `GET /v1/vol-surface/raw` | Raw market-quoted surface (strike ladders, pre-fit) — PRO and ULTRA |
+| `cv.vol_surface_raw(...)` | `GET /v1/vol-surface/raw` | Raw market-quoted surface (strike ladders, pre-fit) — all plans |
 | `cv.vol_history(...)` | `GET /v1/vol-history` | Constant-maturity historical IV for backtests |
 | `cv.spot_history(...)` | `GET /v1/spot-history` | Daily spot price time series per session |
 | `cv.realized_vol(...)` | `GET /v1/realized-vol` | Rolling annualized RV (√365) from spot log-returns |
@@ -205,15 +205,18 @@ data = cv.vol_index(ccy="BTC", tenor="30D", raw=True)
 
 ## Plan tiers (at a glance)
 
-All six methods are available on every plan. Tiers differ in the breadth of the data window (assets, sessions, history depth) and Greeks access.
+All six methods are available on every plan, including Greeks/analytics and raw quotes — every request is metered pay-as-you-go at a **flat $0.001 per API call, regardless of tier**. Tiers differ only in asset coverage, session coverage, and history depth.
 
-| | BASIC | PRO | ULTRA |
-|---|---|---|---|
-| Assets | BTC | + ETH, SOL | + XRP, AVAX, TRX |
-| Sessions | US | US | Asia, London, US |
-| History window | 30 days | 1 year | Full archive |
-| Greeks / analytics | — | ✓ | ✓ |
-| Quota | 500/month | 100k/day | 100k/day |
+| | BASIC | PRO |
+|---|---|---|
+| Assets | BTC | BTC, ETH, SOL, XRP, AVAX, TRX |
+| Sessions | US | Asia, London, US |
+| History window (API) | 30 days | Full archive |
+| Greeks / analytics | ✓ | ✓ |
+| Raw quotes (`vol_surface_raw`) | ✓ | ✓ |
+| Price | $0.001 / call | $0.001 / call |
+
+BASIC is free, no card required, and already includes full Greeks and raw quotes — PRO exists for broader asset/session/history coverage, not for unlocking features. (ULTRA has been retired and folded into PRO — existing ULTRA keys keep working with PRO's entitlements.)
 
 The history window applies to `vol_history`, `spot_history`, `realized_vol`, and any date range passed to `vol_index`. Hitting a limit raises `PlanLimitError` — the message tells you which tier unlocks it. Full details at **[cryptovol.io/api](https://www.cryptovol.io/api)**.
 
